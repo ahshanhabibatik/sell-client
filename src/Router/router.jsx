@@ -13,6 +13,9 @@ import MyProduct from "../Panel/UserPanel/MyProduct";
 import MyProductUpdate from "../Panel/UserPanel/MyProductUpdate";
 import AllDiscountProduct from "../Page/Home/Home/ProductHome/AllDiscountProduct";
 import CartProduct from "../Panel/UserPanel/CartProduct";
+import UserCartProduct from "../Page/Home/Home/CartProduct/UserCartProduct";
+import OrderNow from "../Page/Home/Home/CartProduct/OrderNow";
+
 
 
 const router = createBrowserRouter([
@@ -35,6 +38,15 @@ const router = createBrowserRouter([
             {
                 path: "/allDiscountProduct",
                 element: <AllDiscountProduct></AllDiscountProduct>,
+            },
+            {
+                path: "/userCart",
+                element: <UserCartProduct></UserCartProduct>,
+            },
+            {
+                path: "/userNow/:id",
+                element: <OrderNow></OrderNow>,
+                loader: ({ params }) => fetch(`http://localhost:5000/OrderNow/${params.id}`)
             },
         ],
     },

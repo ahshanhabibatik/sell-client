@@ -98,6 +98,8 @@ const ProductHome = () => {
                 text: 'Product successfully added to the cart!',
                 icon: 'success',
                 confirmButtonText: 'OK',
+            }).then(() => {
+                window.location.reload(); // Reloads the page after the user confirms the success message
             });
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -117,7 +119,7 @@ const ProductHome = () => {
             }
         }
     };
-
+    
     // Special and normal products
     const specialDiscountProducts = products.filter(product => product.specialDiscount === "yes" && !product.isDiscountOver);
     const normalProducts = products.filter(product => product.specialDiscount === "no" || product.isDiscountOver);
