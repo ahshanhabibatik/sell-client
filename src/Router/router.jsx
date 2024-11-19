@@ -11,6 +11,8 @@ import UserHome from "../Panel/UserPanel/UserHome";
 import UploadProduct from "../Panel/UserPanel/UploadProduct";
 import MyProduct from "../Panel/UserPanel/MyProduct";
 import MyProductUpdate from "../Panel/UserPanel/MyProductUpdate";
+import AllDiscountProduct from "../Page/Home/Home/ProductHome/AllDiscountProduct";
+import CartProduct from "../Panel/UserPanel/CartProduct";
 
 
 const router = createBrowserRouter([
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>,
+            },
+            {
+                path: "/allDiscountProduct",
+                element: <AllDiscountProduct></AllDiscountProduct>,
             },
         ],
     },
@@ -59,6 +65,10 @@ const router = createBrowserRouter([
                 path: '/dashboard/myProduct/update/:id',
                 element: <MyProductUpdate></MyProductUpdate>,
                 loader: ({ params }) => fetch(`http://localhost:5000/userProduct/${params.id}`)
+            },
+            {
+                path: '/dashboard/cart',
+                element: <CartProduct></CartProduct>,
             },
         ]
     }

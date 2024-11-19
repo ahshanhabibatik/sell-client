@@ -5,6 +5,7 @@ import { FiMenu } from "react-icons/fi";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";  // Import useNavigate hook
 import useAdmin from "../Hook/UseAdmin";
+import { FaShoppingCart } from "react-icons/fa";
 
 // Simple Spinner Component
 const Spinner = () => (
@@ -150,15 +151,15 @@ const DashBoard = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="/dashboard/bookings"
+                                    to="/dashboard/cart"
                                     className={({ isActive }) =>
                                         `flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${isActive ? 'bg-indigo-800 text-yellow-300' : 'hover:bg-indigo-600'
                                         }`
                                     }
                                     onClick={() => setShowMobileMenu(false)} // Close menu on click
                                 >
-                                    <FaList size={20} />
-                                    {!collapsed && <span>My Bookings</span>}
+                                    <FaShoppingCart size={20} />
+                                    {!collapsed && <span>Cart Products</span>}
                                 </NavLink>
                             </li>
                         </>
