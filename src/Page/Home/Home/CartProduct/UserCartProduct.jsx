@@ -8,15 +8,6 @@ const UserCartProduct = () => {
     const [cart, setCart] = UseCart();
     const axiosPublic = UseAxiosPublic();
 
-    // Handle Order Now action
-    const handleOrderNow = (product) => {
-        Swal.fire({
-            title: 'Order Placed!',
-            text: `You have successfully placed an order for "${product.productName}"`,
-            icon: 'success',
-            confirmButtonText: 'OK',
-        });
-    };
 
     // Handle Delete action
     const handleDeleteProduct = (productId) => {
@@ -56,9 +47,9 @@ const UserCartProduct = () => {
 
     return (
         <div className="container mx-auto p-6">
-            <h1 className="md:text-3xl text-xl font-bold text-center mb-6">Cart Products</h1>
+            <h1 className="text-4xl font-extrabold text-center text-black mb-8">🛒 Your Cart</h1>
             {cart.length === 0 ? (
-                <p className="text-center text-gray-600">No products in the cart.</p>
+                <p className="text-center text-gray-500 text-lg">Your cart is empty. Start adding products!</p>
             ) : (
                 <div className="border rounded-lg overflow-x-auto">
                     <table className="table-auto w-full border-collapse bg-white shadow-lg rounded-lg overflow-hidden">

@@ -15,6 +15,8 @@ import AllDiscountProduct from "../Page/Home/Home/ProductHome/AllDiscountProduct
 import CartProduct from "../Panel/UserPanel/CartProduct";
 import UserCartProduct from "../Page/Home/Home/CartProduct/UserCartProduct";
 import OrderNow from "../Page/Home/Home/CartProduct/OrderNow";
+import MyBooking from "../Panel/UserPanel/MyBooking";
+import Details from "../Page/Home/Home/ProductHome/Details";
 
 
 
@@ -42,6 +44,11 @@ const router = createBrowserRouter([
             {
                 path: "/userCart",
                 element: <UserCartProduct></UserCartProduct>,
+            },
+            {
+                path: "/details/:id",
+                element: <Details></Details>,
+                loader: ({ params }) => fetch(`http://localhost:5000/userProduct/${params.id}`)
             },
             {
                 path: "/userNow/:id",
@@ -81,6 +88,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/cart',
                 element: <CartProduct></CartProduct>,
+            },
+            {
+                path: '/dashboard/myBooking',
+                element: <MyBooking></MyBooking>,
             },
         ]
     }

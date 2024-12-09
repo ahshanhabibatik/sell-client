@@ -146,13 +146,21 @@ const MyProductUpdate = () => {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Category</label>
-                        <input
-                            type="text"
-                            {...register('category', { required: 'Product name is required' })}
-                            className={`w-full mt-2 p-2 border ${errors.productName ? 'border-red-500' : 'border-gray-300'} rounded-md`}
-                            placeholder="Enter product name"
+                        <select
+                            {...register('category', { required: 'Category is required' })}
+                            className={`w-full mt-2 p-2 border ${errors.category ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                             defaultValue={productData?.category}
-                        />
+                        >
+                            <option value="">Select Category</option>
+                            <option value="table">Mobiles</option>
+                            <option value="bed">Electronics</option>
+                            <option value="chair">Vehicles</option>
+                            <option value="other">Hobbies</option>
+                            <option value="other">Sports kids</option>
+                            <option value="other">Education</option>
+                            <option value="other">Room Furniture</option>
+
+                        </select>
 
                     </div>
 
@@ -204,7 +212,7 @@ const MyProductUpdate = () => {
                                 No
                             </label>
                         </div>
-                        {errors.specialDiscount && <span className="text-red-500 text-sm">{errors.specialDiscount.message}</span>}
+
                     </div>
 
                     {/* Conditionally Render Discount Percentage and Date */}
@@ -231,7 +239,6 @@ const MyProductUpdate = () => {
                                     {...register('discountDate', { required: 'Discount date is required' })}
                                     className={`w-full mt-2 p-2 border ${errors.discountDate ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                                 />
-                                {errors.discountDate && <span className="text-red-500 text-sm">{errors.discountDate.message}</span>}
                             </div>
                         </>
                     )}
@@ -249,6 +256,8 @@ const MyProductUpdate = () => {
 
 
 
+
+
                     {/* Available Quantity */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Available Quantity</label>
@@ -263,6 +272,22 @@ const MyProductUpdate = () => {
                             defaultValue={productData?.availableQuantity}
                         />
 
+                    </div>
+
+                    {/* Product rating */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Product Rating</label>
+                        <input
+                            type="number"
+                            {...register('rating', {
+                                required: 'Product rating is required',
+                                validate: value => value >= 0 && value <= 5 || 'Rating must be between 1 and 5'
+                            })}
+                            className={`w-full mt-2 p-2 border ${errors.rating ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+                            defaultValue={productData?.rating}
+                            min="0"
+                            max="5"
+                        />
                     </div>
 
                     {/* Product Description */}

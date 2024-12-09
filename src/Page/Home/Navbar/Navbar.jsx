@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import '../../../Hook/font.css'
 
 const Navbar = () => {
     const location = useLocation();
@@ -11,7 +12,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-gradient-to-r from-blue-600 to-blue-400 p-4 shadow-lg">
+        <nav className="bg-gradient-to-r from-blue-600 to-blue-400 p-4 shadow-lg poppins">
 
             <div className="flex space-x-6 text-lg">
                 <Link

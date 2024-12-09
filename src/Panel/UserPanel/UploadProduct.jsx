@@ -10,7 +10,6 @@ const UploadProduct = () => {
     const { register, handleSubmit, formState: { errors }, watch, setValue, reset } = useForm();
     const axiosPublic = UseAxiosPublic();
     const watchedSpecialDiscount = watch('specialDiscount');
-    const watchedCategory = watch('category');
     const apiKey = import.meta.env.VITE_Image_apiKe;
     const image_hosting_api = `https://api.imgbb.com/1/upload?key=${apiKey}`;
 
@@ -32,9 +31,6 @@ const UploadProduct = () => {
     const onSubmit = async (data) => {
         try {
 
-            if (data.categoryManual) {
-                data.category = data.categoryManual;
-            }
 
             const imageFile = data.image[0];
             const imageUrl = await uploadImageToImageBB(imageFile);
@@ -63,19 +59,6 @@ const UploadProduct = () => {
                 text: 'Product upload failed. Please try again.',
             });
         }
-    };
-
-    const handleCategoryChange = (e) => {
-        const value = e.target.value;
-        if (value !== "other") {
-            setValue('categoryManual', '');
-        }
-        setValue('category', value);
-    };
-
-    const handleManualCategoryChange = (e) => {
-        const value = e.target.value;
-        setValue('category', value);
     };
 
     return (
@@ -145,28 +128,17 @@ const UploadProduct = () => {
                         <label className="block text-sm font-medium text-gray-700">Category</label>
                         <select
                             {...register('category', { required: 'Category is required' })}
-                            onChange={handleCategoryChange}
                             className={`w-full mt-2 p-2 border ${errors.category ? 'border-red-500' : 'border-gray-300'} rounded-md`}
                         >
                             <option value="">Select Category</option>
-                            <option value="table">Table</option>
-                            <option value="bed">Bed</option>
-                            <option value="chair">Chair</option>
-                            <option value="other">Other (Specify Below)</option>
+                            <option value="table">Mobiles</option>
+                            <option value="bed">Electronics</option>
+                            <option value="chair">Vehicles</option>
+                            <option value="other">Hobbies</option>
+                            <option value="other">Sports kids</option>
+                            <option value="other">Education</option>
+                            <option value="other">Room Furniture</option>
                         </select>
-                        {watchedCategory === "other" && (
-                            <div>
-                                <input
-                                    type="text"
-                                    value={watch('categoryManual')}
-                                    onChange={handleManualCategoryChange}
-                                    {...register('categoryManual', { required: 'Please specify the category' })}
-                                    className={`w-full mt-2 p-2 border ${errors.categoryManual ? 'border-red-500' : 'border-gray-300'} rounded-md`}
-                                    placeholder="Enter category name"
-                                />
-                                {errors.categoryManual && <span className="text-red-500 text-sm">{errors.categoryManual.message}</span>}
-                            </div>
-                        )}
                         {errors.category && <span className="text-red-500 text-sm">{errors.category.message}</span>}
                     </div>
 
@@ -274,6 +246,22 @@ const UploadProduct = () => {
                             placeholder="Enter available quantity"
                         />
                         {errors.availableQuantity && <span className="text-red-500 text-sm">{errors.availableQuantity.message}</span>}
+                    </div>
+                    {/* Product rating */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Product Rating</label>
+                        <input
+                            type="number"
+                            {...register('rating', {
+                                required: 'Product rating is required',
+                                validate: value => value >= 0 && value <= 5 || 'Rating must be between 1 and 5'
+                            })}
+                            className={`w-full mt-2 p-2 border ${errors.rating ? 'border-red-500' : 'border-gray-300'} rounded-md`}
+                            placeholder="Enter product rating (1-5)"
+                            min="0"
+                            max="5"
+                        />
+                        {errors.rating && <span className="text-red-500 text-sm">{errors.rating.message}</span>}
                     </div>
 
                     {/* Product Description */}

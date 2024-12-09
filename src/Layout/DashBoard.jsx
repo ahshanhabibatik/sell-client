@@ -151,6 +151,19 @@ const DashBoard = () => {
                             </li>
                             <li>
                                 <NavLink
+                                    to="/dashboard/myBooking"
+                                    className={({ isActive }) =>
+                                        `flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${isActive ? 'bg-indigo-800 text-yellow-300' : 'hover:bg-indigo-600'
+                                        }`
+                                    }
+                                    onClick={() => setShowMobileMenu(false)} // Close menu on click
+                                >
+                                    <FaList size={20} />
+                                    {!collapsed && <span>My Booking</span>}
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
                                     to="/dashboard/cart"
                                     className={({ isActive }) =>
                                         `flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${isActive ? 'bg-indigo-800 text-yellow-300' : 'hover:bg-indigo-600'
